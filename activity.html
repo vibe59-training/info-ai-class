@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>중1 정보 학습활동 추천기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-wide">
+  <header>
+    <h1>중1 정보 학습활동 추천기</h1>
+    <nav aria-label="주 메뉴">
+      <a href="index.html">홈</a>
+      <a href="quiz.html">퀴즈 생성기</a>
+      <a href="activity.html" aria-current="page">학습활동 추천</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card narrow" aria-labelledby="form-title">
+      <h2 id="form-title">수업 조건</h2>
+      <p class="card-desc">학생 수준, 단원명, 차시 학습 목표를 입력하면 모둠 활동 3개를 추천해 줘요.</p>
+
+      <form id="activity-form" novalidate>
+        <fieldset id="form-fields" class="form-fields">
+          <legend class="visually-hidden">수업 조건 입력</legend>
+
+          <div class="field">
+            <label for="level">학생 수준</label>
+            <select id="level" name="level" aria-describedby="level-hint level-error">
+              <option value="">학생 수준을 선택하세요</option>
+              <option value="기초">기초</option>
+              <option value="보통">보통</option>
+              <option value="심화">심화</option>
+            </select>
+            <p id="level-hint" class="hint">우리 반 학생들의 전반적인 수준을 골라 주세요.</p>
+            <p id="level-error" class="field-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="unit">단원명</label>
+            <input id="unit" name="unit" type="text" maxlength="50" autocomplete="off"
+                   placeholder="예: 조건문" aria-describedby="unit-count unit-error">
+            <div class="field-meta">
+              <span id="unit-count" class="count" aria-hidden="true">0 / 50</span>
+            </div>
+            <p id="unit-error" class="field-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="goal">차시 학습 목표</label>
+            <textarea id="goal" name="goal" rows="3" maxlength="200"
+                      placeholder="예: 조건문을 이용해 상황에 따라 실행 흐름이 달라지는 프로그램을 만들 수 있다."
+                      aria-describedby="goal-count goal-error"></textarea>
+            <div class="field-meta">
+              <span id="goal-count" class="count" aria-hidden="true">0 / 200</span>
+            </div>
+            <p id="goal-error" class="field-error" hidden></p>
+          </div>
+        </fieldset>
+
+        <button id="recommend-btn" class="btn-primary" type="submit">활동 추천받기</button>
+      </form>
+    </section>
+
+    <div id="status" class="status narrow" role="status" aria-live="polite"></div>
+
+    <section id="result" class="result" aria-labelledby="result-title">
+      <h2 id="result-title">추천 결과</h2>
+
+      <div id="result-actions" class="result-actions" hidden>
+        <div>
+          <p id="result-summary" class="result-summary"></p>
+          <p id="result-goal" class="result-sub"></p>
+        </div>
+        <div class="action-buttons">
+          <button id="again-btn" class="btn-secondary" type="button">다른 활동 추천받기</button>
+        </div>
+      </div>
+
+      <div id="empty-state" class="empty-state">
+        <p class="empty-title">아직 추천받은 활동이 없어요</p>
+        <p>조건을 입력하고 '활동 추천받기'를 누르면 모둠 활동 3개가 카드로 여기에 나타나요.</p>
+      </div>
+
+      <div id="cards" class="activity-cards" hidden></div>
+    </section>
+
+    <aside class="notice narrow">
+      <h2>안내</h2>
+      <ul>
+        <li>지금은 입력과 상관없이 같은 예시 활동이 나오는 화면 시안이에요. AI 연결은 아직 되어 있지 않아요.</li>
+        <li>추천 활동은 모둠(3~5명)이 한 차시(45분) 안에 할 수 있는 활동이에요.</li>
+        <li>로그인이 없고, 입력한 내용은 이 화면에서만 쓰이며 저장되지 않아요.</li>
+        <li>실제로 수업에 쓰기 전에는 준비물과 진행 방법을 꼭 검토해 주세요.</li>
+      </ul>
+    </aside>
+  </main>
+
+  <script src="common.js"></script>
+  <script src="activity.js"></script>
+</body>
+</html>
